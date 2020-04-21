@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id "com.diffplug.gradle.spotless" version "3.28.1"
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+spotless {
+    java {
+        // google java convention 적용
+        googleJavaFormat()
+        // 사용하지않는 import 제거
+        removeUnusedImports()
+        // 공백 제거
+        trimTrailingWhitespace()
+        // Tab으로 적용가능
+        indentWithTabs()
+        // newline적용
+        endWithNewline()
+        // Import 순서 지정 가능(파일로도 지정이 가능)
+        importOrder 'java', 'javax', 'org', 'com', 'nesoy', ''
+    }
+
+    format 'misc', {
+        target '**/*.gradle', '**/*.md', '**/.gitignore'
+        trimTrailingWhitespace()
+        indentWithTabs() // or spaces. Takes an integer argument if you don't like 4
+        endWithNewline()
+    }
+}

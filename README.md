@@ -1,4 +1,5 @@
 # Spotless-example
+- <https://nesoy.github.io/articles/2020-04/Spotless>
 
 ```gradle
 plugins {
